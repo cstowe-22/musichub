@@ -1,0 +1,54 @@
+<%- include('partials/header', {title:"Musicians"}) -%>
+
+<h2>Musicians</h2>
+<table>
+  <tr>
+    <th>
+      Stage Name
+    </th>
+    <th>
+      Name
+    </th>
+    <th>
+      Years of Experience
+    </th>
+    <th>
+      Label
+    </th>
+    <th>
+      Musical Style
+    </th>
+    <th>
+      Track Count
+    </th>
+    <th>
+      Track Selection
+    </th>
+  </tr>
+  <%for(let i =0; i<musicians.length; i++){%>
+  <th>
+    <a href="/musician/<%=musicians[i].stageName%>"><%=musicians[i].stageName%></a>
+  </th>
+  <th>
+    <%=musicians[i].name%>
+  </th>
+  <th>
+    <%=musicians[i].years%>
+  </th>
+  <th>
+    <%=musicians[i].label%>
+  </th>
+  <th>
+    <%=musicians[i].style%>
+  </th>
+  <th>
+    <%=musicians[i].count%>
+  </th>
+  <th>
+    <%=musicians[i].tracks[0]%>
+  </th>
+  </tr>
+  <%}%>
+</table>
+
+  <%- include('partials/footer') -%>

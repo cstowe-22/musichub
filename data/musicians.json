@@ -1,10 +1,11 @@
-"Sound Rush": {
-  "Stage Name": "Sound Rush",
-	"Name": "Jeroen and Martijn Boeren",
-	"Years of Experience": 10,
-	"Label": "Art of Creation",
-	"Musical style": "Hardstyle",
-	"Track Count": 20,
-  "Tracks": ["Break My Fall", "Hypnotized"],
-	"Biography": "Sound Rush is bangin'!"
+{"Sound Rush": {
+  "stageName": "Sound Rush",
+	"name": "Jeroen and Martijn Boeren",
+	"years": 10,
+	"label": "Art of Creation",
+	"style": "Hardstyle",
+	"count": 20,
+  "tracks": ["Break My Fall", "Hypnotized"],
+	"bio": "Sound Rush is bangin'!"
+}
 }
