@@ -102,20 +102,17 @@ app.get('/scores', function(request, response) {
   });
 });
 
-app.get('/opponent/:opponentName', function(request, response) {
-  let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+app.get('/musician/:musicianName', function(request, response) {
+  let musicians = JSON.parse(fs.readFileSync('data/musicians.json'));
 
   // using dynamic routes to specify resource request information
-  let opponentName = request.params.opponentName;
+  let musicianName = request.params.musicianName;
 
-  if(opponents[opponentName]){
-    opponents[opponentName].win_percent = (opponents[opponentName].win/parseFloat(opponents[opponentName].win+opponents[opponentName].lose+opponents[opponentName].tie) * 100).toFixed(2);
-    if(opponents[opponentName].win_percent=="NaN") opponents[opponentName].win_percent=0;
-
+  if(musicians[musicianName]){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("opponentDetails",{
-      opponent: opponents[opponentName]
+    response.render("musicianDetails",{
+      musician: musicians[musicianName]
     });
 
   }else{
