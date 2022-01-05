@@ -1,4 +1,4 @@
-<%- include('partials/header', {title:"Musicians"}) -%>
+<%- include('partials/header', {title:"Tracks"}) -%>
 
 <h2>Tracks</h2>
 <table>
@@ -13,33 +13,33 @@
       Musicians
     </th>
     <th>
+      Label
+    </th>
+    <th>
       Genre
     </th>
     <th>
-      Label
+      Commentary
     </th>
   </tr>
   <%for(let i =0; i<tracks.length; i++){%>
   <th>
-    <a href="/musician/<%=tracks[i].title%>"><%=tracks[i].title%></a>
+    <a href="/track/<%=tracks[i].title%>"><%=tracks[i].title%></a>
   </th>
   <th>
-    <%=tracks[i].name%>
+    <%=tracks[i].date%>
   </th>
   <th>
-    <%=tracks[i].years%>
+    <%=tracks[i].musicians%>
   </th>
   <th>
     <%=tracks[i].label%>
   </th>
   <th>
-    <%=tracks[i].style%>
+    <%=tracks[i].genre%>
   </th>
   <th>
-    <%=tracks[i].count%>
-  </th>
-  <th>
-    <%=musicians[i].tracks[0]%>
+    <%=tracks[i].commentary%>
   </th>
   </tr>
   <%}%>

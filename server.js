@@ -121,30 +121,77 @@ app.get('/musician/:musicianName', function(request, response) {
   }
 });
 
+app.get('/tracks', function(request, response) {
+  let tracks = JSON.parse(fs.readFileSync('data/tracks.json'));
+  let trackArray=[];
+
+  //create an array to use sort, and dynamically generate win percent
+  for(title in tracks){
+    trackArray.push(tracks[title])
+  }
+    trackArray.sort(function(a, b){
+  })
+
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("tracks",{
+    tracks: trackArray
+  });
+});
+
+app.get('/track/:trackName', function(request, response) {
+  let tracks = JSON.parse(fs.readFileSync('data/tracks.json'));
+
+  // using dynamic routes to specify resource request information
+  let trackName = request.params.trackName;
+
+  if(tracks[trackName]){
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("trackDetails",{
+      track: tracks[trackName]
+    });
+
+  }else{
+    response.status(404);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("error", {
+      "errorCode":"404"
+    });
+  }
+});
+
 app.get('/opponentCreate', function(request, response) {
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("opponentCreate");
 });
-
-app.post('/opponentCreate', function(request, response) {
-    let opponentName = request.body.opponentName;
-    let opponentPhoto = request.body.opponentPhoto;
-    if(opponentName&&opponentPhoto){
-      let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
-      let newOpponent={
-        "name": opponentName,
-        "photo": opponentPhoto,
-        "win":0,
-        "lose": 0,
-        "tie": 0,
+app.post('/musicianCreate', function(request, response) {
+    let musicianStageName = request.musician.stageName;
+    let musicianName = request.musician.name;
+    let musicianYears = request.musician.years;
+    let musicianLabel = request.musician.label;
+    let musicianGenre = request.musician.genre;
+    let musicianCount = request.musician.count;
+    let musicianTracks = request.musician.tracks;
+    let musicianBiography = request.musician.biography;
+    if(musicianName&&musicianName&&musicianYears&&musicianLabel&&musicianGenre&&musicianCount&&musicianTracks&&musicianBiography){
+      let musicians = JSON.parse(fs.readFileSync('data/musicians.json'));
+      let newMusician={
+        "stageName": musicianName,
+        "name": musicianName,
+        "years": musicianYears,
+        "label": musicianLabel,
+        "genre": musicianGenre,
+        "count": musicianCount,
+        "tracks": musicianTracks,
+        "biography": musicianBiography
       }
-      opponents[opponentName] = newOpponent;
-      fs.writeFileSync('data/opponents.json', JSON.stringify(opponents));
-
+      musicians[musicianName] = newMusician;
+      fs.writeFileSync('data/musicians.json', JSON.stringify(musicians));
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
-      response.redirect("/opponent/"+opponentName);
+      response.redirect("/musician/"+musicianName);
     }else{
       response.status(400);
       response.setHeader('Content-Type', 'text/html')

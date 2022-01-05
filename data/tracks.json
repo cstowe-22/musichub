@@ -1,9 +1,9 @@
 {"Hypnotized": {
-	"Title": "Hypnotized",
-	"Release Date": "2/18/21",
-	"Musicians involved": ["Sound Rush", "Rebelion"],
-	"Musical style": "Hardstyle",
-	"Label": "Scantraxx",
-	"Commentary": "Good kicks!"
+	"title": "Hypnotized",
+	"date": "2/18/21",
+	"musicians": ["Sound Rush", " Rebelion"],
+	"label": "Scantraxx",
+	"genre": "Hardstyle",
+	"commentary": "Good kicks!"
 }
 }

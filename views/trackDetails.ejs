@@ -1,0 +1,56 @@
+<%- include('partials/header', {title:"Track Details"}) -%>
+
+<h2>Track - <%=track.name%></h2>
+
+<table>
+  <tr>
+    <th>
+      Title:
+    </th>
+    <td>
+      <%=track.title%>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      Release Date:
+    </th>
+    <td>
+      <%=track.date%>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      Musicians:
+    </th>
+    <td>
+      <%=track.musicians%>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      Label:
+    </th>
+    <td>
+      <%=track.label%>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      Genre:
+    </th>
+    <td>
+      <%=track.genre%>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      Commentary:
+    </th>
+    <td>
+      <%=track.commentary%>
+    </td>
+  </tr>
+</table>
+
+<%- include('partials/footer') -%>
