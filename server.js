@@ -161,24 +161,24 @@ app.get('/track/:trackName', function(request, response) {
   }
 });
 
-app.get('/opponentCreate', function(request, response) {
+app.get('/musicianCreate', function(request, response) {
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("opponentCreate");
+    response.render("musicianCreate");
 });
 app.post('/musicianCreate', function(request, response) {
-    let musicianStageName = request.musician.stageName;
-    let musicianName = request.musician.name;
-    let musicianYears = request.musician.years;
-    let musicianLabel = request.musician.label;
-    let musicianGenre = request.musician.genre;
-    let musicianCount = request.musician.count;
-    let musicianTracks = request.musician.tracks;
-    let musicianBiography = request.musician.biography;
+    let musicianStageName = request.body.stageName;
+    let musicianName = request.body.name;
+    let musicianYears = request.body.years;
+    let musicianLabel = request.body.label;
+    let musicianGenre = request.body.genre;
+    let musicianCount = request.body.count;
+    let musicianTracks = request.body.tracks;
+    let musicianBiography = request.body.biography;
     if(musicianName&&musicianName&&musicianYears&&musicianLabel&&musicianGenre&&musicianCount&&musicianTracks&&musicianBiography){
       let musicians = JSON.parse(fs.readFileSync('data/musicians.json'));
       let newMusician={
-        "stageName": musicianName,
+        "stageName": musicianStageName,
         "name": musicianName,
         "years": musicianYears,
         "label": musicianLabel,
