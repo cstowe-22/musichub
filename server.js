@@ -22,63 +22,10 @@ app.get('/', function(request, response) {
   response.render("index");
 });
 
-app.get('/play', function(request, response) {
-    let players = JSON.parse(fs.readFileSync('data/opponents.json'));
-    response.status(200);
-    response.setHeader('Content-Type', 'text/html')
-    response.render("play", {
-      data: players
-    });
-});
-
-app.get('/results', function(request, response) {
-    let players = JSON.parse(fs.readFileSync('data/opponents.json'));
-
-    //accessing URL query string information from the request object
-    let opponent = request.query.opponent;
-    let playerThrow = request.query.throw;
-
-    if(players[opponent]){
-      let opponentThrowChoices=["Paper", "Rock", "Scissors"];
-      let results={};
-
-      results["playerThrow"]=playerThrow;
-      results["opponentName"]=opponent;
-      results["opponentPhoto"]=players[opponent].photo;
-      results["opponentThrow"] = opponentThrowChoices[Math.floor(Math.random() * 3)];
-
-      if(results["playerThrow"]===results["opponentThrow"]){
-        results["outcome"] = "tie";
-      }else if(results["playerThrow"]==="Paper"){
-        if(results["opponentThrow"]=="Scissors") results["outcome"] = "lose";
-        else results["outcome"] = "win";
-      }else if(results["playerThrow"]==="Scissors"){
-        if(results["opponentThrow"]=="Rock") results["outcome"] = "lose";
-        else results["outcome"] = "win";
-      }else{
-        if(results["opponentThrow"]=="Paper") results["outcome"] = "lose";
-        else results["outcome"] = "win";
-      }
-
-      if(results["outcome"]=="lose") players[opponent]["win"]++;
-      else if(results["outcome"]=="win") players[opponent]["lose"]++;
-      else players[opponent]["tie"]++;
-
-      //update data store to permanently remember results
-      fs.writeFileSync('data/opponents.json', JSON.stringify(players));
-
-      response.status(200);
-      response.setHeader('Content-Type', 'text/html')
-      response.render("results", {
-        data: results
-      });
-    }else{
-      response.status(404);
-      response.setHeader('Content-Type', 'text/html')
-      response.render("error", {
-        "errorCode":"404"
-      });
-    }
+app.get('/about', function(request, response) {
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("about");
 });
 
 app.get('/musicians', function(request, response) {
@@ -99,11 +46,11 @@ app.get('/musicians', function(request, response) {
   });
 });
 
-app.get('/musician/:musicianName', function(request, response) {
+app.get('/musician/:stageName', function(request, response) {
   let musicians = JSON.parse(fs.readFileSync('data/musicians.json'));
 
   // using dynamic routes to specify resource request information
-  let musicianName = request.params.musicianName;
+  let musicianName = request.params.stageName;
 
   if(musicians[musicianName]){
     response.status(200);
@@ -139,11 +86,11 @@ app.get('/tracks', function(request, response) {
   });
 });
 
-app.get('/track/:trackName', function(request, response) {
+app.get('/track/:title', function(request, response) {
   let tracks = JSON.parse(fs.readFileSync('data/tracks.json'));
 
   // using dynamic routes to specify resource request information
-  let trackName = request.params.trackName;
+  let trackName = request.params.title;
 
   if(tracks[trackName]){
     response.status(200);
@@ -167,31 +114,32 @@ app.get('/musicianCreate', function(request, response) {
     response.render("musicianCreate");
 });
 app.post('/musicianCreate', function(request, response) {
-    let musicianStageName = request.body.stageName;
-    let musicianName = request.body.name;
-    let musicianYears = request.body.years;
-    let musicianLabel = request.body.label;
-    let musicianGenre = request.body.genre;
-    let musicianCount = request.body.count;
-    let musicianTracks = request.body.tracks;
-    let musicianBiography = request.body.biography;
-    if(musicianName&&musicianName&&musicianYears&&musicianLabel&&musicianGenre&&musicianCount&&musicianTracks&&musicianBiography){
+    let stageName = request.body.stageName;
+    let name = request.body.name;
+    let years = request.body.years;
+    let label = request.body.label;
+    let genre = request.body.genre;
+    let count = request.body.count;
+    let tracks = request.body.tracks;
+    let biography = request.body.biography;
+    if(stageName&&name&&years&&label&&genre&&count&&tracks&&biography){
       let musicians = JSON.parse(fs.readFileSync('data/musicians.json'));
-      let newMusician={
-        "stageName": musicianStageName,
-        "name": musicianName,
-        "years": musicianYears,
-        "label": musicianLabel,
-        "genre": musicianGenre,
-        "count": musicianCount,
-        "tracks": musicianTracks,
-        "biography": musicianBiography
+
+      let newMusician = {
+        "stageName": stageName,
+        "name": name,
+        "years": years,
+        "label": label,
+        "genre": genre,
+        "count": count,
+        "tracks": tracks,
+        "biography": biography
       }
-      musicians[musicianName] = newMusician;
+      musicians[stageName] = newMusician;
       fs.writeFileSync('data/musicians.json', JSON.stringify(musicians));
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
-      response.redirect("/musician/"+musicianName);
+      response.redirect("/musician/"+stageName);
     }else{
       response.status(400);
       response.setHeader('Content-Type', 'text/html')
@@ -200,6 +148,43 @@ app.post('/musicianCreate', function(request, response) {
       });
     }
 });
+app.get('/trackCreate', function(request, response) {
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("trackCreate");
+});
+app.post('/trackCreate', function(request, response) {
+    let title = request.body.title;
+    let date = request.body.date;
+    let musicians = request.body.musicians;
+    let label = request.body.label;
+    let genre = request.body.genre;
+    let commentary = request.body.commentary;
+    if(title&&date&&musicians&&label&&genre&&commentary){
+      let tracks = JSON.parse(fs.readFileSync('data/tracks.json'));
+      let newTrack = {
+        "title": title,
+        "date": date,
+        "musicians": musicians,
+        "label": label,
+        "genre": genre,
+        "commentary": commentary,
+      }
+      tracks[title] = newTrack;
+      fs.writeFileSync('data/tracks.json', JSON.stringify(tracks));
+      response.status(200);
+      response.setHeader('Content-Type', 'text/html')
+      response.redirect("/track/"+title);
+    }else{
+      response.status(400);
+      response.setHeader('Content-Type', 'text/html')
+      response.render("error", {
+        "errorCode":"400"
+      });
+    }
+});
+
+
 
 // Because routes/middleware are applied in order,
 // this will act as a default error route in case of
