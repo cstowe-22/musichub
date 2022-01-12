@@ -6,8 +6,9 @@ body {
 }
 
 h1 {
-  background-color: #41baaa;
-  font-size: 45px;
+  background-color: #66ffff;
+  font-size: 50px;
+  font-family: "Montserrat";
   text-align: center;
 }
 
@@ -40,7 +41,7 @@ button:focus {
 
 table {
   border-collapse: collapse;
-  background-color: #4dffe7;
+  background-color: #FFFFFF;
   margin: auto;
   width: 50%;
 }
@@ -52,15 +53,15 @@ table, th, td {
 }
 
 tr:hover {
-  background-color: #ccfff8;
+  background-color: #FFFFFF;
 }
 
 a {
-  color: #000080;
+  color: #490080;
 }
 
 a:hover {
-  color: #00ccb1;
+  color: #0000FF;
 }
 
 img {
