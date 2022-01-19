@@ -28,7 +28,12 @@
       Musicians:
     </th>
     <td>
-      <%=track.musicians%>
+      <%let musicians = track.musicians%>
+      <%let musicianString = musicians.toString()%>
+      <%let musicianArray = musicianString.split(",");%>
+      <%musicianArray.forEach(function(val){%>
+    <a href="/musician/<%=val%>"><%=val%></a>
+      <%})%>
     </td>
   </tr>
   <tr>

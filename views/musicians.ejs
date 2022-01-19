@@ -27,7 +27,7 @@
       Track Count
     </th>
     <th>
-      Track Selection
+      Tracks
     </th>
   </tr>
   <%for(let i =0; i<musicians.length; i++){%>
@@ -50,7 +50,12 @@
     <%=musicians[i].count%>
   </th>
   <th>
-    <%=musicians[i].tracks[0]%>
+    <%let tracks = musicians[i].tracks%>
+    <%let trackString = tracks.toString()%>
+    <%let trackArray = trackString.split(",");%>
+    <%trackArray.forEach(function(val){%>
+  <a href="/track/<%=val%>"><%=val%></a>
+    <%})%>
   </th>
   </tr>
   <%}%>

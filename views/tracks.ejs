@@ -34,7 +34,12 @@
     <%=tracks[i].date%>
   </th>
   <th>
-    <%=tracks[i].musicians%>
+    <%let musicians = tracks[i].musicians%>
+    <%let musicianString = musicians.toString()%>
+    <%let musicianArray = musicianString.split(",");%>
+    <%musicianArray.forEach(function(val){%>
+  <a href="/musician/<%=val%>"><%=val%></a>
+    <%})%>
   </th>
   <th>
     <%=tracks[i].label%>
