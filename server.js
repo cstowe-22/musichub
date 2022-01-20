@@ -121,10 +121,9 @@ app.post('/musicianCreate', function(request, response) {
     let genre = request.body.genre;
     let count = request.body.count;
     let tracks = request.body.tracks;
-    let biography = request.body.biography;
+    let bio= request.body.bio;
     if(stageName!=null){
       let musicians = JSON.parse(fs.readFileSync('data/musicians.json'));
-      console.log("it worked");
       let newMusician = {
         "stageName": stageName,
         "name": name,
@@ -133,7 +132,7 @@ app.post('/musicianCreate', function(request, response) {
         "genre": genre,
         "count": count,
         "tracks": tracks,
-        "biography": biography
+        "bio": bio
       }
       musicians[stageName] = newMusician;
       fs.writeFileSync('data/musicians.json', JSON.stringify(musicians));
