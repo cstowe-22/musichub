@@ -12,13 +12,13 @@ div:hover {
   background-color: #09F966;
 }
 
-body{
-  margin-left:25px;
-}
-
 table {
   background-color: #FFFFFF;
   width: 70%;
+}
+
+br{
+  margin-left:25px;
 }
 
 table, th, td {
@@ -30,8 +30,6 @@ table, th, td {
 tr:hover {
   background-color: #FFFFFF;
 }
-
-
 
 img {
   display: block;
