@@ -1,48 +1,29 @@
-body {
-  background-color: #ffffff;
-  font-size: 20px;
-  color: #090090;
-  font-family: "Montserrat";
-}
-
-
 div {
-  border-radius: 25px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-right: 50px;
-  margin-left: 50px;
-  background-color: #66ffff;
-  overflow: auto;
-  padding: 15px;
+  border-radius: 50px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-right: 1000px;
+  margin-left: 0px;
+  background-color: #00FF00;
+  padding: 0px;
 }
 
-button {
-  background-color: #00ffdd;
-  font-size: 12px;
-  border-radius: 6px;
-  border: 2px solid #00cccc;
-  padding: 7px 12px;
+div:hover {
+  background-color: #09F966;
 }
 
-button:hover {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-
-button:focus {
-  outline: none;
+body{
+  margin-left:25px;
 }
 
 table {
-  border-collapse: collapse;
   background-color: #FFFFFF;
-  margin: auto;
-  width: 50%;
+  width: 70%;
 }
 
 table, th, td {
   border: 1px solid black;
-  padding: 3px;
+  padding: 16px;
   text-align: center;
 }
 
@@ -50,13 +31,7 @@ tr:hover {
   background-color: #FFFFFF;
 }
 
-a {
-  color: #490080;
-}
 
-a:hover {
-  color: #0000FF;
-}
 
 img {
   display: block;
@@ -67,4 +42,12 @@ img {
 footer {
   font-size: 50%;
   text-align: center;
+}
+
+ul {
+  background-color: #00FF00;
+}
+
+ul:hover {
+  background-color: #09F966;
 }

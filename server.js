@@ -122,7 +122,7 @@ app.post('/musicianCreate', function(request, response) {
     let count = request.body.count;
     let tracks = request.body.tracks;
     let biography = request.body.biography;
-    if(stageName&&name&&years&&label&&genre&&count&&tracks&&biography){
+    if(stageName!=null){
       let musicians = JSON.parse(fs.readFileSync('data/musicians.json'));
       console.log("it worked");
       let newMusician = {

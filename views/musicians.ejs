@@ -29,6 +29,9 @@
     <th>
       Tracks
     </th>
+    <th>
+      Biography
+    </th>
   </tr>
   <%for(let i =0; i<musicians.length; i++){%>
   <th>
@@ -56,6 +59,9 @@
     <%trackArray.forEach(function(val){%>
   <a href="/track/<%=val%>"><%=val%></a>
     <%})%>
+  </th>
+  <th>
+    <%=musicians[i].bio%>
   </th>
   </tr>
   <%}%>
